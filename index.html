@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Une question pour Audrey</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100svh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #f4f4f4, #dfe9f3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            color: #222;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .big-text {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #222;
+            margin: 25px 0;
+        }
+
+        .highlight {
+            background: #f2f2f2;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            padding: 16px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .next {
+            background: #222;
+            color: white;
+        }
+
+        #yesBtn {
+            background: #222;
+            color: white;
+            min-width: 130px;
+        }
+
+        #noBtn {
+            background: #e5e5e5;
+            color: #333;
+            min-width: 130px;
+        }
+
+        .final {
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .small {
+            font-size: 0.95rem;
+            color: #777;
+            margin-top: 25px;
+        }
+
+        audio {
+            width: 100%;
+            margin: 10px 0 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- PAGE 1 -->
+
+    <div class="card" id="page1">
+
+        <h1>Audrey, j'ai une question.</h1>
+
+        <p>
+            Mais avant ça, il faut que tu répondes
+            à quelques petites choses.
+        </p>
+
+        <p class="small">
+            Rien de dangereux, normalement.
+        </p>
+
+        <button class="next" onclick="nextPage(1)">
+            Commencer
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 2 -->
+
+    <div class="card hidden" id="page2">
+
+        <h1>Première question.</h1>
+
+        <p class="big-text">
+            Est-ce qu'un supporter de l'OM peut faire
+            un sacrifice pour une supportrice de Lyon ?
+        </p>
+
+        <button class="next" onclick="nextPage(2); playMusic();">
+            Voyons voir...
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 3 -->
+
+    <div class="card hidden" id="page3">
+
+        <h1>La preuve.</h1>
+
+        <div class="highlight">
+
+            Je suis supporter de l'OM.
+
+            <br><br>
+
+            Et pourtant...
+
+            <br><br>
+
+            pour toi, Audrey,
+
+            <br><br>
+
+            je suis prêt à écouter l'hymne de l'OL.
+
+        </div>
+
+        <p>
+            Je trouve que c'est déjà un sacrifice
+            assez important pour être souligné.
+        </p>
+
+        <audio id="music" controls>
+            <source src="hymne-ol.mp3" type="audio/mpeg">
+            Ton navigateur ne supporte pas l'audio.
+        </audio>
+
+        <button class="next" onclick="nextPage(3)">
+            J'ai une autre question
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 4 -->
+
+    <div class="card hidden" id="page4">
+
+        <h1>Bon, plus sérieusement...</h1>
+
+        <p>
+            J'aime bien passer du temps avec toi,
+            discuter avec toi,
+            et j'ai surtout envie de voir où ça peut nous mener.
+        </p>
+
+        <p class="big-text">
+            Alors j'ai une proposition à te faire.
+        </p>
+
+        <button class="next" onclick="nextPage(4)">
+            Laquelle ?
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 5 -->
+
+    <div class="card hidden" id="page5">
+
+        <h1>Vendredi.</h1>
+
+        <p class="big-text">
+            Toi + Moi
+        </p>
+
+        <p>
+            Un premier date.
+            <br><br>
+            On passe un bon moment.
+            <br><br>
+            Et on voit si le supporter de l'OM
+            et la supportrice de Lyon peuvent vraiment s'entendre.
+        </p>
+
+        <button class="next" onclick="nextPage(5)">
+            J'ai une dernière question...
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 6 -->
+
+    <div class="card hidden" id="page6">
+
+        <h1>Alors Audrey...</h1>
+
+        <p class="big-text">
+            Veux-tu être l'élue de mon cœur ?
+        </p>
+
+        <p>
+            Attention, prends ton temps pour réfléchir.
+            C'est une décision importante.
+        </p>
+
+        <button id="yesBtn" onclick="yes()">
+            Oui
+        </button>
+
+        <button id="noBtn">
+            Non
+        </button>
+
+    </div>
+
+
+    <!-- PAGE FINALE -->
+
+    <div class="card hidden final" id="page7">
+
+        <h1>Excellent choix.</h1>
+
+        <p>
+            Je savais que tu étais quelqu'un
+            de raisonnable.
+        </p>
+
+        <p class="big-text">
+            Donc rendez-vous vendredi.
+        </p>
+
+        <p>
+            Et maintenant, il reste une seule
+            information importante à me transmettre...
+        </p>
+
+        <div class="highlight">
+
+            Est-ce que j'ai l'autorisation
+            de te faire un bisou vendredi ?
+
+        </div>
+
+        <p class="small">
+            Tu peux m'envoyer ta réponse.
+            <br><br>
+            Promis, je respecterai la décision du jury.
+        </p>
+
+    </div>
+
+
+    <script>
+
+        function nextPage(page) {
+
+            document.getElementById("page" + page).classList.add("hidden");
+
+            document.getElementById("page" + (page + 1)).classList.remove("hidden");
+
+        }
+
+
+        function playMusic() {
+
+            const music = document.getElementById("music");
+
+            music.play().catch(function() {
+                console.log("La musique doit être lancée manuellement.");
+            });
+
+        }
+
+
+        const noBtn = document.getElementById("noBtn");
+
+
+        function moveNo() {
+
+            const buttonWidth = noBtn.offsetWidth;
+            const buttonHeight = noBtn.offsetHeight;
+
+            const maxX = window.innerWidth - buttonWidth - 20;
+            const maxY = window.innerHeight - buttonHeight - 20;
+
+            const x = Math.max(
+                10,
+                Math.random() * maxX
+            );
+
+            const y = Math.max(
+                10,
+                Math.random() * maxY
+            );
+
+            noBtn.style.position = "fixed";
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+        }
+
+
+        noBtn.addEventListener("mouseenter", moveNo);
+
+
+        noBtn.addEventListener("touchstart", function(event) {
+
+            event.preventDefault();
+
+            moveNo();
+
+        });
+
+
+        noBtn.addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            moveNo();
+
+        });
+
+
+        function yes() {
+
+            document.getElementById("page6").classList.add("hidden");
+
+            document.getElementById("page7").classList.remove("hidden");
+
+        }
+
+    </script>
+
+</body>
+</html>
